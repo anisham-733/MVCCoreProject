@@ -39,7 +39,7 @@ namespace MVCCore1.Controllers
             //blobfiles.Filename = Path.GetFileName(p.fi);
             
             _Service.uploadImage(photo);
-            //service class 
+            //service class to upload image url to database
             _Service.addNew(blobfiles,photo);
             Console.WriteLine(blobfiles.Filename);
             return (IActionResult)View();
