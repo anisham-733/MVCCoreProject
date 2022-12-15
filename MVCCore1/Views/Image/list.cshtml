@@ -1,0 +1,51 @@
+﻿@model IEnumerable<MVCCore1.Models.Blobfiles>
+
+@{
+    ViewBag.Title = "GrpList";
+}
+
+<h2>GrpList</h2>
+@Html.ActionLink("upload new", "addnew")
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Filename)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Filesize)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateModified)
+        </th>
+        <th
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        //using(Html.BeginForm())
+        <tr>
+            <td>
+
+                @Html.ActionLink(item.Filename, "view", "Image", new { path = item.Path }, null)
+                @*<a href="C:\Users\VanshPrajapati\Downloads\MVCNewTask\MVCNewTask\MVCNewTask\"+ @item.path>@item.filename</a>*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Filesize)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateModified)
+            </td>
+
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id=item.id }) |*@
+                @*@Html.ActionLink("Details", "Details", new { id=item.id }) |*@
+                @*@Html.ActionLink("Delete", "Delete", "Image", new { id = item.id.ToString(), filename = item.id.ToString() + item.filename, path = item.path }, null)*@
+        </tr>
+    }
+
+</table>

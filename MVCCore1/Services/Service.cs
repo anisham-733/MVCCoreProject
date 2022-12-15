@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using Azure;
@@ -6,6 +8,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Storage;
 using Microsoft.Azure.Storage.Blob;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using Microsoft.Extensions.Options;
 using MVCCore1.Models;
 using MVCCore1.Repositories;
@@ -61,8 +65,28 @@ namespace MVCCore1.Services
                 blobfiles.Path = imagePath1; 
                 //adding to database
                 _Operations.newFile(blobfiles);
+
+                
             
             
+        }
+        public IEnumerable<Blobfiles> GetAllBlobs()
+        {
+            IEnumerable<Blobfiles> info = _Operations.GetBlobfiles();
+            //var imgInfo = dbContext.blobfiles.ToList();
+            var query = from img in info
+                        select new Blobfiles
+                        {
+                            Id = img.Id,
+                            Filename = img.Filename,
+                            Filesize = img.Filesize,
+                            DateModified = System.DateTime.Now,
+                            Path = img.Path
+                        };
+
+            return query;
+
+
         }
     }
 }

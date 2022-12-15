@@ -41,8 +41,14 @@ namespace MVCCore1.Controllers
             _Service.uploadImage(photo);
             //service class to upload image url to database
             _Service.addNew(blobfiles,photo);
-            Console.WriteLine(blobfiles.Filename);
-            return (IActionResult)View();
+            
+            return RedirectToAction("list");
+           
         }
+        public IActionResult list()
+        {
+            return View(_Service.GetAllBlobs());
+        }
+        
     }
 }

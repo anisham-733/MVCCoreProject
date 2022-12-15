@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNetCore.Http;
@@ -13,5 +14,6 @@ namespace MVCCore1.Services
         
         Task  addNew(Blobfiles blobfiles,IFormFile file);
         Task uploadImage(IFormFile file);
+        IEnumerable<Blobfiles> GetAllBlobs();
     }
 }
